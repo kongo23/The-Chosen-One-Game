@@ -45,35 +45,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AudioScript.cs" />
-     <Compile Include="Assets\Scripts\BlurControl.cs" />
-     <Compile Include="Assets\Scripts\ChangeButton.cs" />
      <Compile Include="Assets\Scripts\DestroyByBoundary.cs" />
      <Compile Include="Assets\Scripts\DestroyByContact.cs" />
      <Compile Include="Assets\Scripts\DestroyByTime.cs" />
      <Compile Include="Assets\Scripts\DropFlickering.cs" />
      <Compile Include="Assets\Scripts\EggMover.cs" />
-     <Compile Include="Assets\Scripts\EnemyHealth.cs" />
-     <Compile Include="Assets\Scripts\Fading.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\LeftRightScroller.cs" />
      <Compile Include="Assets\Scripts\LightColorChanger.cs" />
-     <Compile Include="Assets\Scripts\MaximizeLight.cs" />
      <Compile Include="Assets\Scripts\Mover.cs" />
-     <Compile Include="Assets\Scripts\PauseAndLoadManager.cs" />
      <Compile Include="Assets\Scripts\PickUpDrop.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\RandomDestroyByTime.cs" />
      <Compile Include="Assets\Scripts\RandomRotator.cs" />
      <Compile Include="Assets\Scripts\ScrollBackGround.cs" />
-     <Compile Include="Assets\Scripts\SoundManager.cs" />
-     <Compile Include="Assets\Scripts\StartGameLight.cs" />
-     <Compile Include="Assets\Scripts\TurnOnSplashParticles.cs" />
-     <Compile Include="Assets\Scripts\WeaponController.cs" />
      <Compile Include="Assets\Tazo_fx\Script\BillBoard.cs" />
-     <None Include="Assets\Shaders\WaterBlurFinal.shader" />
-     <None Include="Assets\Shaders\WaterBlurModified.shader" />
-     <None Include="Assets\Materials\LinearGradient.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
