@@ -2,16 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\LeftRightScroller.cs" Line="37" Column="5" />
-      <File FileName="Assets\Scripts\ScrollBackGround.cs" Line="22" Column="35" />
-      <File FileName="Assets\Scripts\GameManager.cs" Line="81" Column="37" />
-      <File FileName="Assets\Scripts\Mover.cs" Line="28" Column="1" />
-      <File FileName="Assets\Scripts\EggMover.cs" Line="23" Column="31" />
-      <File FileName="Assets\Scripts\DestroyByContact.cs" Line="13" Column="156" />
-      <File FileName="Assets\Scripts\RandomRotator.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="54" Column="36" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="84" Column="43" />
+      <File FileName="Assets\Scripts\EnemyHealth.cs" Line="17" Column="47" />
+      <File FileName="Assets\Scripts\MaximizeLight.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DropFlickering.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DestroyByContact.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PickUpDrop.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\DestroyByBoundary.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Mover.cs" Line="31" Column="68" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
