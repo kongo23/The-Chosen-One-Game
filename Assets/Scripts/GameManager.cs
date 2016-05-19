@@ -48,12 +48,15 @@ public class GameManager : MonoBehaviour {
 	private SoundManager soundManager;
 	private static int winCount;
 
+	public ParticleSystem[] psSystems;
+
 
 	[HideInInspector] public bool pause = false;
 	[HideInInspector] public bool gameWin = false;
 	[HideInInspector] public bool eggIsComing = false;
 	[HideInInspector] public bool startPlaying;
 	[HideInInspector] public bool gameOverStatus;
+	[HideInInspector] public float increaseParticleSpeed;
 
 	private bool isCompetitorSpermNeeded;
 
@@ -109,8 +112,12 @@ public class GameManager : MonoBehaviour {
 	public void AddSpeed(float speedValue){
 		float oldSpeed = speed;
 		speed += speedValue;
-		if(oldSpeed != speed)
+		if (oldSpeed != speed) {
 			AnimationTextSize ();
+		}
+		for (var i = 0; i < psSystems.Length; i++) {
+			psSystems [i].startSpeed += 0.05f;
+		}
 		speedText.text = speed.ToString("F1");
 		enemySpeed += speedValue;
 		wallSpeed += speedValue * 2;

@@ -47,6 +47,9 @@
   <ItemGroup>
      <Compile Include="Assets\Tazo_fx\Script\Red_UVScroller.js" />
      <Compile Include="Assets\Tazo_fx\Script\Red_rotateThis.js" />
+     <None Include="Assets\Shaders\WaterBlurFinal.shader" />
+     <None Include="Assets\Shaders\WaterBlurModified.shader" />
+     <None Include="Assets\Materials\LinearGradient.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

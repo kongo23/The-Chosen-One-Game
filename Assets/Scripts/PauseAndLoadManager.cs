@@ -46,6 +46,10 @@ public class PauseAndLoadManager : MonoBehaviour {
 		unpaused.TransitionTo (.01f);
 	}
 
+	public void Quit(){
+		Application.Quit();
+	}
+
 
 
 	IEnumerator onGame(){

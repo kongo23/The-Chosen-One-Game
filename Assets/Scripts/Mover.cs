@@ -22,6 +22,8 @@ public class Mover : MonoBehaviour {
 	private float currentSpeed;
 	private float targetManeuver;
 	private bool onlyOnce;
+	private bool wormJump;
+	private float randomZtarget;
 	// Use this for initialization
 
 	private Transform findPlayer;
@@ -33,6 +35,7 @@ public class Mover : MonoBehaviour {
 		gameManager = FindObjectOfType<GameManager> ().GetComponent<GameManager>();
 		StartCoroutine(Evade());
 		onlyOnce = true;
+		randomZtarget = Random.Range (-6, 7);
 	}
 
 	void FixedUpdate(){
@@ -66,6 +69,8 @@ public class Mover : MonoBehaviour {
 		} else if (gameObject.tag == "EnemyBolt") {
 			rb.velocity = transform.forward * dropNShotSpeed;
 
+		}else if (gameObject.tag == "Worm"){
+			JumpWorm ();
 		}else {
 			rb.velocity = Vector3.forward * dropNShotSpeed;
 		}
@@ -80,6 +85,33 @@ public class Mover : MonoBehaviour {
 				gameManager.ChangeRacePlace ();
 				onlyOnce = false;
 			}
+		}
+	}
+
+
+	void JumpWorm(){
+		if (true) {
+			if (true) {
+				float wormMove = Mathf.PingPong (Time.time, 1.5f) ;
+				float toVel = 2.5f;
+				float maxForce = 10.0f;
+				float gain = 5f;
+				Vector3 targetPos = new Vector3 (7f, 0, randomZtarget);
+				Vector3 dist = targetPos - transform.position;
+				dist.y = 0; // ignore height differences
+				Vector3 tgtVel = Vector3.ClampMagnitude(toVel * dist, wormMove);
+				Vector3 error = tgtVel - rb.velocity;
+				Vector3 force = Vector3.ClampMagnitude(gain * error, maxForce);
+				rb.AddForce(force);
+
+				if (transform.position.x >= targetPos.x - 0.1f) {
+					gameObject.SetActive (false);
+					wormJump = true;
+				}
+			}
+		}else {
+			float wormMove = Mathf.PingPong (Time.time, 0.8f) * dropNShotSpeed;
+			rb.velocity = new Vector3 (0.0f, 0.0f, wormMove);
 		}
 	}
 
