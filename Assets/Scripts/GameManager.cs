@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject[] fallenStars;
 	public GameObject[] competitorSperm;
 	public GameObject[] competitorOvertakingSperms;
+	public GameObject horizontalWorm;
 	public Vector3 spawnValues;
 	public Vector3 spawnCompetitorSpermValues;
 	public Text distanceText;

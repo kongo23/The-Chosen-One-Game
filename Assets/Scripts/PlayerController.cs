@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour {
 	void IntroPlayer(){
 		if (transform.position.z < target.z && !gameManager.startPlaying) {
 			Vector3 newTarget = Vector3.forward * 4;
-			rb.velocity = Vector3.Lerp(Vector3.forward, newTarget,5f* Time.smoothDeltaTime) ;
+			rb.velocity = Vector3.Lerp(Vector3.forward, newTarget,5f* Time.smoothDeltaTime);
 			animator.speed = Mathf.Lerp (animator.speed, 4f, Time.deltaTime * 5f);
 		} else {
 			rb.velocity = Vector3.zero;

@@ -23,7 +23,9 @@ public class Mover : MonoBehaviour {
 	private float targetManeuver;
 	private bool onlyOnce;
 	private bool wormJump;
+	private bool willJump = false;
 	private float randomZtarget;
+	private int randomNumber;
 	// Use this for initialization
 
 	private Transform findPlayer;
@@ -35,16 +37,21 @@ public class Mover : MonoBehaviour {
 		gameManager = FindObjectOfType<GameManager> ().GetComponent<GameManager>();
 		StartCoroutine(Evade());
 		onlyOnce = true;
-		randomZtarget = Random.Range (-6, 7);
+		randomZtarget = Random.Range (-8, 2);
+		if (Random.value < 0.5)
+			willJump = true;
+
 	}
 
 	void FixedUpdate(){
 		if (gameObject.tag == "Enemy") {
 			rb.velocity = -Vector3.forward * gameManager.enemySpeed;
 
+
 		} else if (gameObject.tag == "Competitor") {
 			animator.speed = 2.5f;
 			rb.velocity = Vector3.forward * dropNShotSpeed;
+
 
 		} else if (gameObject.tag == "OverTakingCompetitor") {
 			float competitorSpeed;
@@ -69,10 +76,17 @@ public class Mover : MonoBehaviour {
 		} else if (gameObject.tag == "EnemyBolt") {
 			rb.velocity = transform.forward * dropNShotSpeed;
 
-		}else if (gameObject.tag == "Worm"){
+		} else if (gameObject.tag == "Worm") {
 			JumpWorm ();
+		} else if (gameObject.tag == "HorizontalWorm"){
+			rb.AddForce (-Vector3.right * dropNShotSpeed);
+			if(rb.velocity.magnitude > dropNShotSpeed)
+			{
+				rb.velocity = rb.velocity.normalized * dropNShotSpeed;
+			}
 		}else {
 			rb.velocity = Vector3.forward * dropNShotSpeed;
+
 		}
 
 	}
@@ -89,9 +103,8 @@ public class Mover : MonoBehaviour {
 	}
 
 
-	void JumpWorm(){
-		if (true) {
-			if (true) {
+	public void JumpWorm(){
+		if (willJump) {
 				float wormMove = Mathf.PingPong (Time.time, 1.5f) ;
 				float toVel = 2.5f;
 				float maxForce = 10.0f;
@@ -105,11 +118,17 @@ public class Mover : MonoBehaviour {
 				rb.AddForce(force);
 
 				if (transform.position.x >= targetPos.x - 0.1f) {
-					gameObject.SetActive (false);
 					wormJump = true;
 				}
-			}
-		}else {
+				if (wormJump) {
+					GameObject horizontalWorm = gameManager.horizontalWorm;
+					Quaternion wormRot = Quaternion.Euler (0, 0, 90);
+					Instantiate (horizontalWorm, targetPos, wormRot);
+					wormJump = false;
+					Destroy (gameObject);
+				}
+	
+		}else{
 			float wormMove = Mathf.PingPong (Time.time, 0.8f) * dropNShotSpeed;
 			rb.velocity = new Vector3 (0.0f, 0.0f, wormMove);
 		}
