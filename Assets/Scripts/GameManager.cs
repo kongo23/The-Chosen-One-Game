@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject[] fallenStars;
 	public GameObject[] competitorSperm;
 	public GameObject[] competitorOvertakingSperms;
+	public GameObject worm;
 	public GameObject horizontalWorm;
 	public Vector3 spawnValues;
 	public Vector3 spawnCompetitorSpermValues;
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour {
 		racePlace = 10;
 		StartCoroutine (CompetitorsSpermSpawn ());
 		StartCoroutine (SpawnWaves ());
+		StartCoroutine (SpawnWorms ());
 		StartCoroutine (FallenStars ());
 		StartCoroutine (RandomSpawnOvertakingSperm ());
 	}
@@ -194,6 +196,30 @@ public class GameManager : MonoBehaviour {
 			yield return new WaitForSeconds (waveEnemyWait);
 
 		}
+	}
+
+	IEnumerator SpawnWorms(){
+		yield return new WaitForSeconds (Random.Range (10, 20));
+		Debug.Log ("Start");
+		Quaternion spawnRotation = Quaternion.identity;
+		Mover moverScript = GameObject.FindObjectOfType<Mover> ();
+		float targetX = moverScript.targetX;
+		while (!gameOverStatus && GameObject.FindGameObjectWithTag ("Egg") == null) {
+			if (Random.value > 0.5) {
+				targetX = 7;
+				Vector3 spawnPosition = new Vector3 (4.8f, 0, -16);
+				spawnRotation.eulerAngles = new Vector3 (0, 0, -180);
+				Instantiate (worm, spawnPosition, spawnRotation);
+			} else {
+				targetX = -7;
+				Vector3 spawnPosition = new Vector3 (-4.8f, 0, -16);
+				spawnRotation.eulerAngles = new Vector3 (0, 0, -5);
+				Instantiate (worm, spawnPosition, spawnRotation);
+			}
+			yield return new WaitForSeconds (Random.Range (10, 20));
+		}
+
+
 	}
 
 	IEnumerator FallenStars(){

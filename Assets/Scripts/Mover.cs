@@ -19,6 +19,8 @@ public class Mover : MonoBehaviour {
 
 	public float medusaSpeed;
 
+	[HideInInspector]public float targetX; //for worms
+
 	private float currentSpeed;
 	private float targetManeuver;
 	private bool onlyOnce;
@@ -38,7 +40,7 @@ public class Mover : MonoBehaviour {
 		StartCoroutine(Evade());
 		onlyOnce = true;
 		randomZtarget = Random.Range (-8, 2);
-		if (Random.value < 0.5)
+		if (Random.value < 0.9)
 			willJump = true;
 
 	}
@@ -104,12 +106,12 @@ public class Mover : MonoBehaviour {
 
 
 	public void JumpWorm(){
-		if (willJump) {
+		if (false) {
 				float wormMove = Mathf.PingPong (Time.time, 1.5f) ;
 				float toVel = 2.5f;
 				float maxForce = 10.0f;
 				float gain = 5f;
-				Vector3 targetPos = new Vector3 (7f, 0, randomZtarget);
+				Vector3 targetPos = new Vector3 (targetX, 0, randomZtarget);
 				Vector3 dist = targetPos - transform.position;
 				dist.y = 0; // ignore height differences
 				Vector3 tgtVel = Vector3.ClampMagnitude(toVel * dist, wormMove);
@@ -117,15 +119,23 @@ public class Mover : MonoBehaviour {
 				Vector3 force = Vector3.ClampMagnitude(gain * error, maxForce);
 				rb.AddForce(force);
 
-				if (transform.position.x >= targetPos.x - 0.1f) {
+				if (transform.position.x >= targetPos.x ) {
 					wormJump = true;
 				}
 				if (wormJump) {
 					GameObject horizontalWorm = gameManager.horizontalWorm;
-					Quaternion wormRot = Quaternion.Euler (0, 0, 90);
-					Instantiate (horizontalWorm, targetPos, wormRot);
-					wormJump = false;
-					Destroy (gameObject);
+					if (targetX < 0) {
+						Quaternion wormRot = Quaternion.Euler (0, 0, 90);
+						Instantiate (horizontalWorm, targetPos, wormRot);
+						wormJump = false;
+						Destroy (gameObject);
+					} else {
+						Quaternion wormRot = Quaternion.Euler (0, 0, -90);
+						Instantiate (horizontalWorm, targetPos, wormRot);
+						wormJump = false;
+						Destroy (gameObject);
+					}
+					
 				}
 	
 		}else{
